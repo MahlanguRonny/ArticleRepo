@@ -12,3 +12,8 @@ README.txt
 /.vs/ArticleRepo/v16
 /.vs
 /ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/obj
+*.v2
+*.dll
+*.pdb
+/ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/node_modules/bootstrap
+/ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/bin/Debug/net5.0/package-lock.json
