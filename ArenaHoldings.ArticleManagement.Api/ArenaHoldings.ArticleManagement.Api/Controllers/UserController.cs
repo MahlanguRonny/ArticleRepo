@@ -35,5 +35,16 @@ namespace ArenaHoldings.ArticleManagement.Api.Controllers
             return new JsonResult("An error occured while creating a user") { StatusCode = 500 };
         }
 
+        [HttpGet("GetUserById/{id}")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            var user = await _unitOfWork.UserRepository.GetById(id);
+
+            if (user == null)
+                return NotFound();
+
+            return Ok(user);
+        }
+
     }
 }
