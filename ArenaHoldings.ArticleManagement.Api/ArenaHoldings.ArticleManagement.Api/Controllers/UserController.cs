@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ArenaHoldings.ArticleManagement.Api.configurations;
+using ArenaHoldings.ArticleManagement.Api.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +13,27 @@ namespace ArenaHoldings.ArticleManagement.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public UserController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        [HttpPost]
+        [Route("CreateUser")]
+        public async Task<IActionResult> CreateUser(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                await _unitOfWork.UserRepository.Add(user);
+                await _unitOfWork.CompleteAsync();
+
+                return CreatedAtAction("", new { user.Id }, user);//Todo add correct action name here
+            }
+
+            return new JsonResult("An error occured while creating a user") { StatusCode = 500 };
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+using ArenaHoldings.ArticleManagement.Api.configurations;
 using ArenaHoldings.ArticleManagement.Api.DataEntities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,7 @@ namespace ArenaHoldings.ArticleManagement.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ArenaHoldings.ArticleManagement.Api", Version = "v1" });
             });
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
