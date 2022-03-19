@@ -15,6 +15,7 @@ namespace ArenaHoldings.ArticleManagement.Api.configurations
         private readonly ILogger _logger;
 
         public IUserRepository UserRepository { get; private set; }
+        public IArticleRepository ArticleRepository { get; private set; }
 
         public UnitOfWork(ArticleContext context, ILoggerFactory loggerFactory)
         {
@@ -22,6 +23,7 @@ namespace ArenaHoldings.ArticleManagement.Api.configurations
             _logger = loggerFactory.CreateLogger("logs");
 
             UserRepository = new UserRepository(context, _logger);
+            ArticleRepository = new ArticleRepository(context, _logger);
         }
 
         public async Task CompleteAsync()
