@@ -33,7 +33,16 @@ namespace ArenaHoldings.ArticleManagement.Api.configurations
 
         public void Dispose()
         {
-            _articleContext.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _articleContext.Dispose();
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ArenaHoldings.ArticleManagement.Api.repositories.services
 {
-    public class ArticleRepository: GenericRepository<Article>, IArticleRepository
+    public class ArticleRepository : GenericRepository<Article>, IArticleRepository
     {
         public ArticleRepository(ArticleContext articleContext, ILogger logger) : base(articleContext, logger)
         {
@@ -30,9 +30,46 @@ namespace ArenaHoldings.ArticleManagement.Api.repositories.services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} CreateOrUpdate function error", typeof(UserRepository));
+                _logger.LogError(ex, "{Repo} CreateOrUpdate function error", typeof(ArticleRepository));
                 throw;
             }
         }
+
+        public override async Task<bool> Delete(int id)
+        {
+            try
+            {
+                var exist = await dbSet.Where(x => x.Id == id)
+                                        .FirstOrDefaultAsync();
+
+                if (exist == null) return false;
+
+                dbSet.Remove(exist);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Article Repo Delete function error", typeof(ArticleRepository));
+                return false;
+
+            }
+        }
+
+        public override async Task<IEnumerable<Article>> All()
+        {
+            try
+            {
+                return await dbSet.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} Get All Articles function error", typeof(ArticleRepository));
+                return new List<Article>();
+
+            }
+        }
+
+
     }
 }

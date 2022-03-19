@@ -31,5 +31,39 @@ namespace ArenaHoldings.ArticleManagement.Api.Controllers
 
             return new JsonResult("An error occured while publishing the article") { StatusCode = 500 };
         }
+
+        [HttpDelete]
+        [Route("DeleteArticle")]
+        public async Task<IActionResult> DeleteArticle(int id)
+        {
+            var article = _unitOfWork.ArticleRepository.GetById(id);
+            if (article == null)
+                return BadRequest();
+
+            await _unitOfWork.ArticleRepository.Delete(id);
+            await _unitOfWork.CompleteAsync();
+
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("GetAllArticles")]
+        public async Task<IActionResult> GetAllArticles()
+        {
+            var users = await _unitOfWork.ArticleRepository.All();
+            return Ok(users);
+        }
+
+        [HttpGet("GetArticleById/{id}")]
+        public async Task<IActionResult> GetArticleById(int id)
+        {
+            var article = await _unitOfWork.ArticleRepository.GetById(id);
+
+            if (article == null)
+                return NotFound();
+
+            return Ok(article);
+        }
     }
 }
+
