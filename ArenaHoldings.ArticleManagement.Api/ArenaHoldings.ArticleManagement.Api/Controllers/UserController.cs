@@ -46,5 +46,19 @@ namespace ArenaHoldings.ArticleManagement.Api.Controllers
             return Ok(user);
         }
 
+        [HttpDelete]
+        [Route("DeleteUser")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = _unitOfWork.UserRepository.GetById(id);
+            if (user == null)
+                return BadRequest();
+
+            await _unitOfWork.UserRepository.Delete(id);
+            await _unitOfWork.CompleteAsync();
+
+            return Ok(user);
+        }
+
     }
 }
