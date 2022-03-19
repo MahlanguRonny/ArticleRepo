@@ -29,7 +29,7 @@ namespace ArenaHoldings.ArticleManagement.Api.Controllers
                 await _unitOfWork.UserRepository.Add(user);
                 await _unitOfWork.CompleteAsync();
 
-                return CreatedAtAction("", new { user.Id }, user);//Todo add correct action name here
+                return CreatedAtAction("GetUserById", new { user.Id }, user);
             }
 
             return new JsonResult("An error occured while creating a user") { StatusCode = 500 };
@@ -57,8 +57,15 @@ namespace ArenaHoldings.ArticleManagement.Api.Controllers
             await _unitOfWork.UserRepository.Delete(id);
             await _unitOfWork.CompleteAsync();
 
-            return Ok(user);
+            return Ok();
         }
 
+        [HttpGet]
+        [Route("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _unitOfWork.UserRepository.All();
+            return Ok(users);
+        }
     }
 }

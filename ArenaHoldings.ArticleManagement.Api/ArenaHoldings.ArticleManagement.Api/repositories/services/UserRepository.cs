@@ -34,5 +34,38 @@ namespace ArenaHoldings.ArticleManagement.Api.repositories.services
                 throw;
             }
         }
+
+        public override async Task<bool> Delete(int id)
+        {
+            try
+            {
+                var exist = await dbSet.Where(x => x.Id == id)
+                                        .FirstOrDefaultAsync();
+
+                if (exist == null) return false;
+
+                dbSet.Remove(exist);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(UserRepository));
+                return false;
+            }
+        }
+
+        public override async Task<IEnumerable<User>> All()
+        {
+            try
+            {
+                return await dbSet.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} Get All User function error", typeof(UserRepository));
+                return new List<User>();
+            }
+        }
     }
 }
