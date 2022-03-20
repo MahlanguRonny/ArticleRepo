@@ -1,1 +1,22 @@
-<p>viewarticles works!</p>
+<body>
+  <div class="rowspace"></div>
+  <div>
+    <mat-grid-list cols="4" rowHeight="300px" gutterSize="20px">
+      <mat-grid-tile *ngFor="let article of articles" [colspan]="article.cols" [rowspan]="article.rows"
+        [style.border]="article.border">
+        <p class="overflow-wrap bg-info">
+          {{article.content}}
+        </p>
+
+        <mat-grid-tile-header class="bg-secondary">
+          <h4 class="text-light">{{article.title}}.</h4>
+        </mat-grid-tile-header>
+
+        <mat-grid-tile-footer>
+          <h1> footer here </h1>
+        </mat-grid-tile-footer>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</body>
