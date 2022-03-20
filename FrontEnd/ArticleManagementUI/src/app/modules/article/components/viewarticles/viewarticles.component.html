@@ -18,5 +18,9 @@
 
       </mat-grid-tile>
     </mat-grid-list>
+
+    <mat-paginator [length]="articles.length" [pageSize]="size" [pageIndex]="page" [pageSizeOptions]="[4, 8, 12]"
+      (page)="loadArticles($event)">
+    </mat-paginator>
   </div>
 </body>

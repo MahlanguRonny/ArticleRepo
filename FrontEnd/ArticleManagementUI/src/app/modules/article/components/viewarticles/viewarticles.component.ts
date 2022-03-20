@@ -16,6 +16,7 @@ export class ViewarticlesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   public articles: Array<Tile> = [];
+  public initialData: Array<Tile> = [];
 
   constructor(
     private readonly router: Router,
@@ -29,18 +30,25 @@ export class ViewarticlesComponent implements OnInit {
     'UserId',
   ];
 
+  page = 0;
+  size = 4;
+
 
   ngOnInit(): void {
-    this.loadArticles();
+    this.loadArticles({ pageIndex: this.page, pageSize: this.size });
   }
 
   // tslint:disable-next-line: typedef
-  loadArticles(): void {
+  loadArticles(obj: any): void {
+    let index = 0;
+    const startingIndex = obj.pageIndex * obj.pageSize;
+    const endingIndex = startingIndex + obj.pageSize;
+
     this.articleService.getAllArticles().subscribe(res => {
       const items = res;
 
       for (const item of items) {
-        this.articles.push(
+        this.initialData.push(
           {
             border: '3px double skyblue',
             cols: 2,
@@ -49,6 +57,11 @@ export class ViewarticlesComponent implements OnInit {
             content: item.content
           });
       }
+
+      this.articles = this.initialData.filter(() => {
+        index++;
+        return (index > startingIndex && index <= endingIndex) ? true : false;
+      });
     });
   }
 }
