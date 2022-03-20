@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ArenaHoldings.ArticleManagement.Api.repositories.services
@@ -19,7 +18,7 @@ namespace ArenaHoldings.ArticleManagement.Api.repositories.services
         {
             try
             {
-                var existingUser = await dbSet.Where(x => x.Id == userEntity.Id).FirstOrDefaultAsync();
+                var existingUser = await dbSet.FirstOrDefaultAsync(x => x.Id == userEntity.Id);
                 if (existingUser == null)
                     return await Add(userEntity);
 
@@ -39,8 +38,8 @@ namespace ArenaHoldings.ArticleManagement.Api.repositories.services
         {
             try
             {
-                var exist = await dbSet.Where(x => x.Id == id)
-                                        .FirstOrDefaultAsync();
+                var exist = await dbSet.FirstOrDefaultAsync(x => x.Id == id)
+                                        ;
 
                 if (exist == null) return false;
 

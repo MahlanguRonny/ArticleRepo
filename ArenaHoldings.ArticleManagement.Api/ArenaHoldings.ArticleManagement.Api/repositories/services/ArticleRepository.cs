@@ -39,8 +39,7 @@ namespace ArenaHoldings.ArticleManagement.Api.repositories.services
         {
             try
             {
-                var exist = await dbSet.Where(x => x.Id == id)
-                                        .FirstOrDefaultAsync();
+                var exist = await dbSet.FirstOrDefaultAsync(x => x.Id == id);
 
                 if (exist == null) return false;
 

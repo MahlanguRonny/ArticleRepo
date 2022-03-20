@@ -1,10 +1,6 @@
 ﻿using ArenaHoldings.ArticleManagement.Api.configurations;
 using ArenaHoldings.ArticleManagement.Api.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ArenaHoldings.ArticleManagement.Api.Controllers
