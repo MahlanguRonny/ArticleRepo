@@ -17,3 +17,7 @@ README.txt
 *.pdb
 /ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/node_modules/bootstrap
 /ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/bin/Debug/net5.0/package-lock.json
+ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/bin/Debug/net5.0/ref/ArenaHoldings.ArticleManagement.Api.dll
+ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/bin/Debug/net5.0/ArenaHoldings.ArticleManagement.Api.pdb
+ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/bin/Debug/net5.0/ArenaHoldings.ArticleManagement.Api.dll
+ArenaHoldings.ArticleManagement.Api/ArenaHoldings.ArticleManagement.Api/bin/Debug/net5.0/ArenaHoldings.ArticleManagement.Api.deps.json
