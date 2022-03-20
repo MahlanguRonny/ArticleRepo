@@ -1,6 +1,8 @@
 <body>
-  <div class="rowspace"></div>
   <div>
+    <div>
+      <a mat-button routerLink="/new-article">New Article</a>
+    </div>
     <mat-grid-list cols="4" rowHeight="300px" gutterSize="20px">
       <mat-grid-tile *ngFor="let article of articles" [colspan]="article.cols" [rowspan]="article.rows"
         [style.border]="article.border">

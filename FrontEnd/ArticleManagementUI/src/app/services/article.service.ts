@@ -12,7 +12,11 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
   baseApiUrl = environment.articleApi;
 
-  getAllArticles(): Observable<any> {
+  public getAllArticles(): Observable<any> {
     return this.http.get<any>(`${this.baseApiUrl}/Article/GetAllArticles`);
+  }
+
+  public addNewArticle(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseApiUrl}/Article/GetAllArticles`, data);
   }
 }

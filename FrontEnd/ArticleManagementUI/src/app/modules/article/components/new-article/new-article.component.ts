@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-article',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-article.component.scss']
 })
 export class NewArticleComponent implements OnInit {
+  public newArticleForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    public formBuilder: FormBuilder,
+  ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+
+    this.newArticleForm = this.formBuilder.group({
+      PublisherName: ['', Validators.required],
+      EmailAddress: ['', Validators.required, Validators.email],
+      ArticleTitle: ['', Validators.required],
+      ArticleContent: ['', Validators.required, Validators.minLength(150)],
+    });
+  }
+
+  onSubmit(): void {
   }
 
 }

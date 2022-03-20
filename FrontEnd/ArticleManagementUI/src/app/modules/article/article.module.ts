@@ -9,6 +9,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -24,7 +29,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatPaginatorModule,
     MatSortModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
+    MatButtonModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule
   ]
 })
 export class ArticleModule { }

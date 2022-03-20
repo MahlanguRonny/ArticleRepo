@@ -31,7 +31,7 @@ export class ViewarticlesComponent implements OnInit {
   ];
 
   page = 0;
-  size = 4;
+  size = 5;
 
 
   ngOnInit(): void {
