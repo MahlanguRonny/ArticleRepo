@@ -31,6 +31,14 @@ namespace ArenaHoldings.ArticleManagement.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ArenaHoldings.ArticleManagement.Api", Version = "v1" });
             });
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  "CorsPolicy",
+                  builder => builder.WithOrigins("http://localhost:4200")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,9 +52,8 @@ namespace ArenaHoldings.ArticleManagement.Api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("CorsPolicy");
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

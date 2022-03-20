@@ -1,5 +1,6 @@
 ﻿using ArenaHoldings.ArticleManagement.Api.configurations;
 using ArenaHoldings.ArticleManagement.Api.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -50,8 +51,8 @@ namespace ArenaHoldings.ArticleManagement.Api.Controllers
         [Route("GetAllArticles")]
         public async Task<IActionResult> GetAllArticles()
         {
-            var users = await _unitOfWork.ArticleRepository.All();
-            return Ok(users);
+            var articles = await _unitOfWork.ArticleRepository.All();
+            return Ok(articles);
         }
 
         [HttpGet("GetArticleById/{id}")]
