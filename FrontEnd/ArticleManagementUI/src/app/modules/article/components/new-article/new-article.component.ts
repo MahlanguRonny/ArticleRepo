@@ -26,14 +26,13 @@ export class NewArticleComponent implements OnInit {
 
     this.newArticleForm = this.formBuilder.group({
       PublisherName: ['', Validators.required],
-      EmailAddress: ['', Validators.required, Validators.email],
+      EmailAddress: ['', Validators.compose([Validators.required, Validators.email])],
       ArticleTitle: ['', Validators.required],
-      ArticleContent: ['', Validators.required, Validators.minLength(150)],
+      ArticleContent: ['', Validators.compose([Validators.required, Validators.minLength(150)])],
     });
   }
 
   onSubmit(): void {
-    console.log(JSON.stringify(this.newArticleForm.value.PublisherName));
     const userDto: UserDto = {
       id: 0,
       Email: this.newArticleForm.value.EmailAddress,
@@ -47,7 +46,7 @@ export class NewArticleComponent implements OnInit {
       userDto
     };
 
-    console.log(this.newArticleForm.value.ArticleContent);
+    console.log('gets here ' + this.newArticleForm.value);
     this.articleService.addNewArticle(articleDto).pipe(
       finalize(() => {
         this.toast.success('Article successfully published');
