@@ -25,7 +25,7 @@ namespace ArenaHoldings.ArticleManagement.Api.configurations
 
         public async Task CompleteAsync()
         {
-            var test = await _articleContext.SaveChangesAsync() > 0;
+            await _articleContext.SaveChangesAsync();
         }
 
         public void Dispose()

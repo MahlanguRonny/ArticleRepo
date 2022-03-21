@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Article } from '../models/article/article';
+import { ArticleDto } from '../models/article/article';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -16,7 +16,7 @@ export class ArticleService {
     return this.http.get<any>(`${this.baseApiUrl}/Article/GetAllArticles`);
   }
 
-  public addNewArticle(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseApiUrl}/Article/GetAllArticles`, data);
+  public addNewArticle(articleDto: ArticleDto): Observable<any> {
+    return this.http.post<any>(`${this.baseApiUrl}/Article/PublishArticle`, articleDto);
   }
 }

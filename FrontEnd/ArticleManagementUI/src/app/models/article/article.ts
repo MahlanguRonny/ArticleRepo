@@ -1,6 +1,7 @@
-export interface Article{
+import { UserDto } from './../users/user';
+export interface ArticleDto{
   id: number;
   title: string;
   content: string;
-  userId: string;
+  userDto: UserDto;
 }
