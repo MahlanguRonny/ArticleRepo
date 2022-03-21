@@ -1,5 +1,6 @@
 using ArenaHoldings.ArticleManagement.Api.configurations;
 using ArenaHoldings.ArticleManagement.Api.DataEntities;
+using ArenaHoldings.ArticleManagement.Api.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +31,11 @@ namespace ArenaHoldings.ArticleManagement.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ArenaHoldings.ArticleManagement.Api", Version = "v1" });
             });
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDtoMapper, DtoMapper>();
+
+
             services.AddCors(options =>
             {
                 options.AddPolicy(
