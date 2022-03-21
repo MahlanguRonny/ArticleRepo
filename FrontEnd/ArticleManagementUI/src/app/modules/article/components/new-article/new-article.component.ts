@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ArticleService } from 'src/app/services/article.service';
 import { finalize } from 'rxjs/operators';
-// import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-article',
@@ -19,7 +19,7 @@ export class NewArticleComponent implements OnInit {
     public formBuilder: FormBuilder,
     private readonly articleService: ArticleService,
     private readonly router: Router,
-    //private readonly toast: ToastrService
+    private readonly toast: ToastrService
   ) { }
 
   public ngOnInit(): void {
@@ -47,9 +47,10 @@ export class NewArticleComponent implements OnInit {
       userDto
     };
 
+    console.log(this.newArticleForm.value.ArticleContent);
     this.articleService.addNewArticle(articleDto).pipe(
       finalize(() => {
-        // this.toast.success('Article successfully published');
+        this.toast.success('Article successfully published');
         this.router.navigate(['/viewarticles']);
       })
     ).subscribe();
