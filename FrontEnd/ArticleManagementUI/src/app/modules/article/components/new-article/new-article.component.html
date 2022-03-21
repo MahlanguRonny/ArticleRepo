@@ -1,0 +1,46 @@
+<div class="container">
+  <form [formGroup]="newArticleForm">
+    <mat-card class="example-card table-bordered">
+      <mat-card-title>
+        Publisher Details
+      </mat-card-title>
+      <div class="row">
+        <mat-form-field class="col-12">
+          <mat-label>Enter name and surname here </mat-label>
+          <input matInput formControlName="PublisherName">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-12">
+          <mat-label>Enter email address here </mat-label>
+          <input matInput formControlName="EmailAddress">
+        </mat-form-field>
+      </div>
+    </mat-card>
+    <br />
+    <mat-card>
+      <mat-card-title>
+        Article Details
+      </mat-card-title>
+      <div class="row">
+        <mat-form-field class="col-12">
+          <mat-label>Enter article tittle here </mat-label>
+          <input matInput formControlName="ArticleTitle">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12">
+          <mat-label>Enter article content </mat-label>
+          <textarea matInput formControlName="ArticleContent"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card>
+    <div class="row">
+      <div class="col-12">
+        <button mat-button class="btn btn-default" (click)="onSubmit()" title="click to save">Save</button>
+        <button mat-button class="btn btn-default" title="click to cancel">Close</button>
+      </div>
+    </div>
+  </form>
+</div>
